@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilicaWriter" xmlns:Fluent="urn:fluent-ribbon"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="SilicaWriter" Height="450" Width="800"
         xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
        ui:WindowHelper.UseModernWindowStyle="True"
                      ui:WindowHelper.SystemBackdropType="Tabbed"
@@ -28,13 +28,26 @@
 
             <!--Tabs-->
             <Fluent:RibbonTabItem Header="Home">
-                <Fluent:RibbonGroupBox Header="">
+                <Fluent:RibbonGroupBox Header="Clipboard">
+                    <Fluent:SplitButton Click="Paste_Click" Header="Paste" Icon="{DynamicResource Fluent.Ribbon.Images.Paste}" LargeIcon="{DynamicResource Fluent.Ribbon.Images.Paste}">
+                        <Fluent:SplitButton.Items>
+                            <MenuItem>Paste</MenuItem>
+                            <MenuItem>Paste Special</MenuItem>
+                        </Fluent:SplitButton.Items>
+                    </Fluent:SplitButton>
+                    <Fluent:Button Click="Cut_Click" Header="Cut" Icon="{DynamicResource Fluent.Ribbon.Images.Cut}" SizeDefinition="Small"/>
+                    <Fluent:Button Click="Copy_Click" Header="Copy" Icon="{DynamicResource Fluent.Ribbon.Images.Copy}" SizeDefinition="Small"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Font">
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Paragraph">
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
+            <Fluent:RibbonTabItem Header="Insert"></Fluent:RibbonTabItem>
         </Fluent:Ribbon>
 
         <Grid Grid.Row="1">
-            <RichTextBox/>
+            <RichTextBox x:Name="editor"/>
         </Grid>
     </Grid>
 </Fluent:RibbonWindow>

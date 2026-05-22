@@ -21,5 +21,19 @@ namespace SilicaWriter
         {
             InitializeComponent();
         }
+
+        private void Cut_Click(object sender, RoutedEventArgs e)
+        {
+            editor.Cut();
+        }
+        private void Copy_Click(object sender, RoutedEventArgs e)
+        {
+            editor.Copy();
+        }
+        private void Paste_Click(object sender, RoutedEventArgs e)
+        {
+            editor.Paste();
+        }
+
     }
 }

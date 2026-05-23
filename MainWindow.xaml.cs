@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Fluent;
+using iNKORE.UI.WPF.Converters;
 
 namespace SilicaWriter
 {
@@ -20,6 +21,11 @@ namespace SilicaWriter
         public MainWindow()
         {
             InitializeComponent();
+            foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
+            {
+                FontFamilyBox.Items.Add(fontFamily.Source);
+            }
+            FontFamilyBox.SelectedItem = "Segoe UI";
         }
 
         private void Cut_Click(object sender, RoutedEventArgs e)
@@ -35,5 +41,38 @@ namespace SilicaWriter
             editor.Paste();
         }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FontSizeBox.Text == null | FontSizeBox.Text == "") return;
+            string selectedFontSize = FontSizeBox.Text;
+            if (editor != null && (selectedFontSize != null | selectedFontSize != "")) {
+                editor.FontSize = double.Parse(selectedFontSize);
+            }
+        }
+
+        private void FontFamilyBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FontFamilyBox.SelectedValue == null) return;
+            FontFamily selectedFontFamily = new FontFamily((string)FontFamilyBox.SelectedValue);
+            if (editor != null)
+            {
+                editor.FontFamily = selectedFontFamily;
+            }
+        }
+
+        private void Bold(object sender, RoutedEventArgs e)
+        {
+            editor.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
+        }
+
+        private void Italic(object sender, RoutedEventArgs e)
+        {
+            editor.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
+        }
+
+        private void Underline(object sender, RoutedEventArgs e)
+        {
+            editor.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
+        }
     }
 }

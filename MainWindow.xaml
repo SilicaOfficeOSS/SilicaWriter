@@ -31,14 +31,57 @@
                 <Fluent:RibbonGroupBox Header="Clipboard">
                     <Fluent:SplitButton Click="Paste_Click" Header="Paste" Icon="{DynamicResource Fluent.Ribbon.Images.Paste}" LargeIcon="{DynamicResource Fluent.Ribbon.Images.Paste}">
                         <Fluent:SplitButton.Items>
-                            <MenuItem>Paste</MenuItem>
-                            <MenuItem>Paste Special</MenuItem>
+                            <Fluent:MenuItem Header="Paste"></Fluent:MenuItem>
+                            <Fluent:MenuItem Header="Paste Special"></Fluent:MenuItem>
                         </Fluent:SplitButton.Items>
                     </Fluent:SplitButton>
                     <Fluent:Button Click="Cut_Click" Header="Cut" Icon="{DynamicResource Fluent.Ribbon.Images.Cut}" SizeDefinition="Small"/>
                     <Fluent:Button Click="Copy_Click" Header="Copy" Icon="{DynamicResource Fluent.Ribbon.Images.Copy}" SizeDefinition="Small"/>
                 </Fluent:RibbonGroupBox>
-                <Fluent:RibbonGroupBox Header="Font">
+                <Fluent:RibbonGroupBox Header="Font" Padding="8">
+                    <StackPanel Orientation="Horizontal" Margin="8">
+                        <Fluent:ComboBox x:Name="FontFamilyBox" SelectionChanged="FontFamilyBox_SelectionChanged"/>
+                        <Fluent:ComboBox x:Name="FontSizeBox" SelectedIndex="3" SelectionChanged="ComboBox_SelectionChanged">
+                            <Fluent:ComboBox.Items>
+                                <Fluent:MenuItem Header="8"/>
+                                <Fluent:MenuItem Header="9"/>
+                                <Fluent:MenuItem Header="10"/>
+                                <Fluent:MenuItem Header="11"/>
+                                <Fluent:MenuItem Header="12"/>
+                                <Fluent:MenuItem Header="14"/>
+                                <Fluent:MenuItem Header="16"/>
+                                <Fluent:MenuItem Header="18"/>
+                                <Fluent:MenuItem Header="20"/>
+                                <Fluent:MenuItem Header="22"/>
+                                <Fluent:MenuItem Header="24"/>
+                                <Fluent:MenuItem Header="28"/>
+                                <Fluent:MenuItem Header="32"/>
+                                <Fluent:MenuItem Header="36"/>
+                                <Fluent:MenuItem Header="40"/>
+                                <Fluent:MenuItem Header="44"/>
+                                <Fluent:MenuItem Header="48"/>
+                                <Fluent:MenuItem Header="72"/>
+                                <Fluent:MenuItem Header="96"/>
+                            </Fluent:ComboBox.Items>
+                        </Fluent:ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        <Fluent:ToggleButton SizeDefinition="Small" Click="Bold">
+                            <Fluent:ToggleButton.MediumIcon>
+                                <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="B" FontWeight="Bold"/>
+                            </Fluent:ToggleButton.MediumIcon>
+                        </Fluent:ToggleButton>
+                        <Fluent:ToggleButton SizeDefinition="Small" Click="Italic">
+                            <Fluent:ToggleButton.MediumIcon>
+                                <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="I" FontStyle="Italic"/>
+                            </Fluent:ToggleButton.MediumIcon>
+                        </Fluent:ToggleButton>
+                        <Fluent:ToggleButton SizeDefinition="Small" Click="Underline">
+                            <Fluent:ToggleButton.MediumIcon>
+                                <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="U" TextDecorations="Underline"/>
+                            </Fluent:ToggleButton.MediumIcon>
+                        </Fluent:ToggleButton>
+                    </StackPanel>
                 </Fluent:RibbonGroupBox>
                 <Fluent:RibbonGroupBox Header="Paragraph">
                 </Fluent:RibbonGroupBox>

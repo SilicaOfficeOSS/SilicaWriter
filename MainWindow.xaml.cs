@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using Fluent;
+using iNKORE.UI.WPF.Converters;
+using iNKORE.UI.WPF.Helpers;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,8 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Fluent;
-using iNKORE.UI.WPF.Converters;
 
 namespace SilicaWriter
 {
@@ -60,19 +61,22 @@ namespace SilicaWriter
             }
         }
 
-        private void Bold(object sender, RoutedEventArgs e)
-        {
-            editor.Selection.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
-        }
-
-        private void Italic(object sender, RoutedEventArgs e)
-        {
-            editor.Selection.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
-        }
-
         private void Underline(object sender, RoutedEventArgs e)
         {
             editor.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
+        }
+
+        void UpdateItemCheckedState(ToggleButton button, DependencyProperty formattingProperty, object expectedValue)
+        {
+            object currentValue = editor.Selection.GetPropertyValue(formattingProperty);
+            button.IsChecked = (currentValue == DependencyProperty.UnsetValue) ? false : currentValue != null && currentValue.Equals(expectedValue);
+        }
+
+        private void editor_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            UpdateItemCheckedState(BoldButton, TextElement.FontWeightProperty, FontWeights.Bold);
+            UpdateItemCheckedState(ItalicButton, TextElement.FontStyleProperty, FontStyles.Italic);
+            UpdateItemCheckedState(UnderlineButton, Inline.TextDecorationsProperty, TextDecorations.Underline);
         }
     }
 }

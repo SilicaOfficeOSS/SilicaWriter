@@ -66,17 +66,17 @@
                         </Fluent:ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" >
-                        <Fluent:ToggleButton SizeDefinition="Small" Click="Bold">
+                        <Fluent:ToggleButton x:Name="BoldButton" SizeDefinition="Small" Command="{x:Static EditingCommands.ToggleBold}" CommandTarget="{Binding ElementName=editor}">
                             <Fluent:ToggleButton.MediumIcon>
                                 <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="B" FontWeight="Bold"/>
                             </Fluent:ToggleButton.MediumIcon>
                         </Fluent:ToggleButton>
-                        <Fluent:ToggleButton SizeDefinition="Small" Click="Italic">
+                        <Fluent:ToggleButton x:Name="ItalicButton" SizeDefinition="Small" Command="{x:Static EditingCommands.ToggleItalic}" CommandTarget="{Binding ElementName=editor}">
                             <Fluent:ToggleButton.MediumIcon>
                                 <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="I" FontStyle="Italic"/>
                             </Fluent:ToggleButton.MediumIcon>
                         </Fluent:ToggleButton>
-                        <Fluent:ToggleButton SizeDefinition="Small" Click="Underline">
+                        <Fluent:ToggleButton x:Name="UnderlineButton" SizeDefinition="Small" Command="{x:Static EditingCommands.ToggleUnderline}" CommandTarget="{Binding ElementName=editor}">
                             <Fluent:ToggleButton.MediumIcon>
                                 <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="U" TextDecorations="Underline"/>
                             </Fluent:ToggleButton.MediumIcon>
@@ -90,7 +90,7 @@
         </Fluent:Ribbon>
 
         <Grid Grid.Row="1">
-            <RichTextBox x:Name="editor"/>
+            <RichTextBox x:Name="editor" SelectionChanged="editor_SelectionChanged"/>
         </Grid>
     </Grid>
 </Fluent:RibbonWindow>
